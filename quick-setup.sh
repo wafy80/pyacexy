@@ -1,0 +1,116 @@
+#!/bin/bash
+
+# Quick Setup Guide per pyacexy
+echo "╔════════════════════════════════════════════════════════════════╗"
+echo "║  PyAcexy - Quick Setup Guide                                   ║"
+echo "╚════════════════════════════════════════════════════════════════╝"
+echo ""
+
+# Check if we're in the right directory
+if [ ! -f "setup.py" ]; then
+    echo "❌ Errore: Esegui questo script da /home/wafy/src/acexy/pyacexy"
+    exit 1
+fi
+
+echo "📍 Posizione: $(pwd)"
+echo "📦 Progetto: pyacexy - Python AceStream Proxy"
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+echo "🎯 PASSI PER LA PUBBLICAZIONE SU GITHUB"
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+
+echo "1️⃣  CREA IL REPOSITORY SU GITHUB"
+echo ""
+echo "   Apri nel browser:"
+echo "   👉 https://github.com/new"
+echo ""
+echo "   Compila il form:"
+echo "   • Repository name: pyacexy"
+echo "   • Description: Python implementation of AceStream HTTP proxy"
+echo "   • Public ✓"
+echo "   • ❌ NON aggiungere README, .gitignore, o license"
+echo "   • Click 'Create repository'"
+echo ""
+read -p "   ✓ Fatto? Premi INVIO per continuare..." dummy
+echo ""
+
+echo "2️⃣  CONFIGURA LE CREDENZIALI (Scegli un metodo)"
+echo ""
+echo "   Opzione A - Personal Access Token (RACCOMANDATO):"
+echo "   1. Vai su: https://github.com/settings/tokens/new"
+echo "   2. Note: 'pyacexy deployment'"
+echo "   3. Scadenza: 30 giorni (o a piacere)"
+echo "   4. Seleziona: [✓] repo"
+echo "   5. Click 'Generate token'"
+echo "   6. COPIA IL TOKEN (lo vedrai solo una volta!)"
+echo ""
+echo "   Opzione B - SSH Key (per uso futuro):"
+echo "   • Segui: https://docs.github.com/en/authentication/connecting-to-github-with-ssh"
+echo ""
+read -p "   Premi INVIO quando sei pronto per il push..." dummy
+echo ""
+
+echo "3️⃣  PUSH DEL CODICE"
+echo ""
+echo "   Eseguo: git push -u origin main"
+echo ""
+echo "   🔑 Quando richiesto:"
+echo "   • Username: wafy80"
+echo "   • Password: [INCOLLA IL TOKEN]"
+echo ""
+read -p "   Premi INVIO per procedere con il push..." dummy
+
+# Execute push
+git push -u origin main
+
+if [ $? -eq 0 ]; then
+    echo ""
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "✅ SUCCESSO! Repository pubblicato!"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+    echo "🌐 Repository: https://github.com/wafy80/pyacexy"
+    echo "🔧 Actions: https://github.com/wafy80/pyacexy/actions"
+    echo "📦 Packages: https://github.com/wafy80/pyacexy/pkgs/container/pyacexy"
+    echo ""
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+    echo "📋 PROSSIMI PASSI:"
+    echo ""
+    echo "  1. Verifica che le GitHub Actions funzionino"
+    echo "  2. Crea una release:"
+    echo "     git tag -a v0.1.0 -m 'Initial release'"
+    echo "     git push origin v0.1.0"
+    echo ""
+    echo "  3. Test installazione:"
+    echo "     pip install git+https://github.com/wafy80/pyacexy.git"
+    echo ""
+    echo "  4. Opzionale - Pubblica su PyPI:"
+    echo "     pip install build twine"
+    echo "     python -m build"
+    echo "     twine upload dist/*"
+    echo ""
+else
+    echo ""
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "❌ Push fallito!"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+    echo "🔍 Possibili cause:"
+    echo ""
+    echo "  1. Repository non ancora creato su GitHub"
+    echo "     → Vai su https://github.com/new e crealo"
+    echo ""
+    echo "  2. Credenziali errate"
+    echo "     → Usa un Personal Access Token come password"
+    echo "     → https://github.com/settings/tokens"
+    echo ""
+    echo "  3. Permessi insufficienti"
+    echo "     → Il token deve avere scope 'repo'"
+    echo ""
+    echo "📖 Per maggiori info: cat DEPLOYMENT_GUIDE.md"
+    echo ""
+fi
